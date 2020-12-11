@@ -7,7 +7,8 @@
         <title>Insert title here</title>
     </head>
     <body>
-        Admin page!
-        <a href="<%=request.getContextPath()%>/perform_logout">Logout</a>
+        Произошла ошибка!<br />
+        ${error}
+    <a href="/">На главную</a>
     </body>
 </html>

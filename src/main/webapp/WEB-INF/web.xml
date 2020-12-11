@@ -12,6 +12,14 @@
     </param-value>
   </context-param>
 
+  <!--<context-param>-->
+    <!--<param-name>contextClass</param-name>-->
+    <!--<param-value>-->
+      <!--&lt;!&ndash;ru.innopolis.stc.mvc.config.ApplicationConfig&ndash;&gt;-->
+      <!--org.springframework.web.context.support.AnnotationConfigWebApplicationContext-->
+    <!--</param-value>-->
+  <!--</context-param>-->
+
   <servlet>
     <servlet-name>dispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

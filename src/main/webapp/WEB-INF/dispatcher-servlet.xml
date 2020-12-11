@@ -21,6 +21,7 @@
 
   <!--Указываем целевой пакет для поиска компонентов-->
   <context:component-scan base-package="ru.innopolis.stc.mvc.controllers" />
+  <context:component-scan base-package="ru.innopolis.stc.mvc.config" />
 
   <!--Подгружаем ресурсы из папки resources-->
   <mvc:resources mapping="/resources/**" location="resources"/>
