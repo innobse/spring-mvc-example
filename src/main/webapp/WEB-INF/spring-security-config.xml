@@ -15,7 +15,6 @@
     <intercept-url pattern="/register" access="IS_AUTHENTICATED_ANONYMOUSLY" />
     <intercept-url pattern="/user" access="hasRole('ROLE_USER')" />
     <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
-    <!--<intercept-url pattern="/resources" access="permitAll()" />-->
 
     <form-login username-parameter="login"
                 password-parameter="password"
@@ -41,6 +40,7 @@
         <!--<user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />-->
         <!--<user name="user" password="user" authorities="ROLE_USER" />-->
         <!--<user name="guest" password="guest" authorities="ROLE_GUEST" />-->
+        <!--<user name="qwerty" password="qwerty" authorities="ROLE_USER" />-->
       <!--</user-service>-->
     <!--</authentication-provider>-->
 

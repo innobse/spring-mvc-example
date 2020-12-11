@@ -20,6 +20,7 @@ public class MyFilter implements Filter {
   @Override
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
       FilterChain filterChain) throws IOException, ServletException {
+
     final User user = (User) ((HttpServletRequest) servletRequest).getSession().getAttribute("user");
 
     if (user != null && user.getLogin().equals("guest")) return;

@@ -36,7 +36,7 @@ public class ApplicationConfig {
   }
 
   @Bean
-  public Filter myFilter(UserDao dao) {
+  public Filter myFilter() {
     return new MyFilter();
   }
 
