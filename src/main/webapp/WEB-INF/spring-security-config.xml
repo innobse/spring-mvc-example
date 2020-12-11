@@ -1,0 +1,64 @@
+<b:beans xmlns="http://www.springframework.org/schema/security"
+  xmlns:b="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!--<http realm="stc" use-expressions="false">-->
+    <!--<intercept-url pattern="/login.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
+    <!--<intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
+    <!--<intercept-url pattern="/admin" access="ROLE_ADMIN"/>-->
+    <!--<intercept-url pattern="/logout*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>-->
+    <!--<intercept-url pattern="/**" access="ROLE_USER"/>-->
+
+    <!--<form-login login-page="/login.jsp"-->
+      <!--authentication-failure-url="/login.jsp?login_error=1"/>-->
+    <!--<http-basic />-->
+    <!--<logout logout-success-url="/logout.jsp"/>-->
+    <!--<remember-me />-->
+    <!--<headers />-->
+    <!--<csrf />-->
+  <!--</http>-->
+
+  <http auto-config="true">
+    <access-denied-handler error-page="/accessDenied" />
+    <intercept-url pattern="/resources" access="permitAll()" />
+    <intercept-url pattern="/user" access="hasRole('ROLE_USER')" />
+    <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
+    <intercept-url pattern="/register" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+    <form-login login-page='/login' default-target-url="/user"
+      authentication-failure-url="/login?error=invalid%20credentials" username-parameter="user_login"
+      password-parameter="password_login" login-processing-url="/checkCredentials" />
+
+    <logout logout-url="/logout" logout-success-url="/login" />
+    <csrf disabled="true" />
+  </http>
+
+  <authentication-manager>
+    <authentication-provider>
+      <user-service>
+        <user name="admin" password="admin" authorities="ROLE_USER, ROLE_ADMIN" />
+        <user name="user" password="user" authorities="ROLE_USER" />
+        <user name="guest" password="guest" authorities="ROLE_GUEST" />
+      </user-service>
+    </authentication-provider>
+  </authentication-manager>
+
+  <!--<authentication-manager>-->
+    <!--<authentication-provider>-->
+      <!--<jdbc-user-service data-source-ref="datasource" users-by-username-query="select username, password, enabled from Users where username = ?" authorities-by-username-query="select u.username u.authority from Users u, Authorities a where u.username = a.username and u.username = ?" />-->
+    <!--</authentication-provider>-->
+  <!--</authentication-manager>-->
+
+  <!--<b:bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+    <!--<b:property name="url" value="jdbc:postgresql://localhost:5432/userdatabase" />-->
+    <!--<b:property name="username" value="postgres" />-->
+    <!--<b:property name="password" value="postgres" />-->
+    <!--<b:property name="driverClassName" value="org.postgresql.Driver" />-->
+  <!--</b:bean>-->
+
+</b:beans>
