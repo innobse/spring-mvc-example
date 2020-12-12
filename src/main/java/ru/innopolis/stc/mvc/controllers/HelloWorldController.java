@@ -31,16 +31,4 @@ public class HelloWorldController {
   public String sqlException() throws SQLClientInfoException {
     throw new SQLClientInfoException();
   }
-
-  @ExceptionHandler
-  @ResponseBody
-  public String catchException(Exception err) {
-    return "Произошла ошибка: \"" + err.getMessage() + "\"";
-  }
-
-  @ExceptionHandler(value = SQLClientInfoException.class)
-  public String catchException(SQLClientInfoException err, Model model) {
-    model.addAttribute("error", "SQLClientInfoException");
-    return "error";
-  }
 }

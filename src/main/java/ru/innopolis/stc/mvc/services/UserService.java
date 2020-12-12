@@ -1,5 +1,6 @@
 package ru.innopolis.stc.mvc.services;
 
+import java.util.Collection;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,7 +18,19 @@ public class UserService implements UserDetailsService {
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    final User userByLogin = repository.getUserByLogin(username);
+    final User userByLogin = getUserByUsername(username);
     return userByLogin == null ? null : new MyUserDetails(userByLogin);
+  }
+
+  public User getUserByUsername(String username) {
+    return repository.getUserByLogin(username);
+  }
+
+  public Collection<User> getAllUsers() {
+    return repository.getAll();
+  }
+
+  public User createNewUser(User newUser) {
+    return repository.addUser(newUser);
   }
 }

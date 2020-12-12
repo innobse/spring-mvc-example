@@ -3,21 +3,31 @@ package ru.innopolis.stc.mvc.config;
 import javax.servlet.Filter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import ru.innopolis.stc.mvc.repositories.InMemoryUserDao;
 import ru.innopolis.stc.mvc.repositories.UserDao;
 import ru.innopolis.stc.mvc.security.AuthSuccessHandler;
+import ru.innopolis.stc.mvc.security.MD5PassEncoder;
 import ru.innopolis.stc.mvc.security.MyFilter;
-import ru.innopolis.stc.mvc.security.PassEncoder;
+import ru.innopolis.stc.mvc.security.Base64PassEncoder;
 import ru.innopolis.stc.mvc.services.UserService;
 
 @Configuration
 public class ApplicationConfig {
 
-  @Bean
-  public PasswordEncoder passEncoder() {
-    return new PassEncoder();
+  @Bean("passEncoder")
+  @Profile("!md5")
+  public PasswordEncoder base64PassEncoder() {
+    return new Base64PassEncoder();
+  }
+
+  @Bean("passEncoder")
+  @Profile("md5")
+  public PasswordEncoder md5PassEncoder() {
+    return new MD5PassEncoder();
   }
 
   @Bean
@@ -36,8 +46,8 @@ public class ApplicationConfig {
   }
 
   @Bean
-  public Filter myFilter() {
-    return new MyFilter();
+  public Filter myFilter(Settings settings) {
+    return new MyFilter(settings);
   }
 
 }

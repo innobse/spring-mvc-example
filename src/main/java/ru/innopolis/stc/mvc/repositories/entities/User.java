@@ -1,5 +1,8 @@
 package ru.innopolis.stc.mvc.repositories.entities;
 
+import lombok.ToString;
+
+@ToString
 public class User {
   private String login;
   private String password;

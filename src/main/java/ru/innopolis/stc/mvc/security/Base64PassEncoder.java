@@ -1,12 +1,13 @@
 package ru.innopolis.stc.mvc.security;
 
+import java.util.Base64;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-public class PassEncoder implements PasswordEncoder {
+public class Base64PassEncoder implements PasswordEncoder {
 
   @Override
   public String encode(CharSequence charSequence) {
-    return charSequence.toString();
+    return Base64.getEncoder().encodeToString(charSequence.toString().getBytes());
   }
 
   @Override
