@@ -40,12 +40,7 @@ public class SecurityDemoController {
   }
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
-  public String login(@RequestParam(value = "error", required = false) String error) {
-//    ModelAndView model = new ModelAndView();
-//    if (error != null && error.isEmpty()) {
-//      model.addObject("error", "Invalid or not correct username or password!");
-//    }
-//    model.setViewName("login");
+  public String index(@RequestParam(value = "error", required = false) String error) {
     return "redirect:/login";
   }
 

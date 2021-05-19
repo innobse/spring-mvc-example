@@ -6,11 +6,7 @@
     </head>
     <body>
         <h1>Привет, ${name}</h1>
-        <br />
         <hr />
-        <c:forEach var="item" items="${list}">
-            Запись: ${item}
-            <br />
-        </c:forEach>
+        ${msg}
     </body>
 </html>

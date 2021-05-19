@@ -3,6 +3,8 @@ package ru.innopolis.stc.mvc.controllers;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,14 +28,14 @@ public class UserController {
   }
 
   @RequestMapping(value = "/{username}", method = RequestMethod.GET)
-  public UserDto getUser(@PathVariable String username) {
+  public UserDto getUsers(@PathVariable String username) {
     final User userByUsername = userService.getUserByUsername(username);
     if (userByUsername == null) return null;
     return new UserDto(userByUsername.getLogin(), userByUsername.getRoles());
   }
 
   @GetMapping("/")
-  public Collection<UserDto> getUser() {
+  public Collection<UserDto> getUsers() {
     final Collection<User> allUsers = userService.getAllUsers();
     return allUsers.stream()
         .map(user -> new UserDto(user.getLogin(), user.getRoles()))

@@ -4,10 +4,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Insert title here</title>
+        <title>Error</title>
     </head>
     <body>
-        Произошла ошибка!<br />
+        Упс! Произошла ошибка!<br />
         ${error}
     <br />
     <a href="/">На главную</a>
